@@ -67,6 +67,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
     private static final String E_ERROR_WHILE_CLEANING_FILES = "E_ERROR_WHILE_CLEANING_FILES";
 
     private String mediaType = "any";
+    private int videoMaximumDuration = 0;
     private boolean multiple = false;
     private boolean includeBase64 = false;
     private boolean includeExif = false;
@@ -118,6 +119,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
 
     private void setConfiguration(final ReadableMap options) {
         mediaType = options.hasKey("mediaType") ? options.getString("mediaType") : "any";
+        videoMaximumDuration = options.hasKey("videoMaximumDuration") ? options.getInt("videoMaximumDuration") : 0;
         multiple = options.hasKey("multiple") && options.getBoolean("multiple");
         includeBase64 = options.hasKey("includeBase64") && options.getBoolean("includeBase64");
         includeExif = options.hasKey("includeExif") && options.getBoolean("includeExif");
@@ -316,6 +318,9 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
                         dataFile);
             }
 
+            if (videoMaximumDuration > 0) {
+                cameraIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, videoMaximumDuration);
+            }
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, mCameraCaptureURI);
 
             if (this.useFrontCamera) {

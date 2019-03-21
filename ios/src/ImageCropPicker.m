@@ -186,6 +186,11 @@ RCT_EXPORT_METHOD(openCamera:(NSDictionary *)options
             }
         }
 
+        NSTimeInterval videoMaximumDuration = [[self.options objectForKey:@"videoMaximumDuration"] doubleValue];
+        if (videoMaximumDuration > 0) {
+            picker.videoMaximumDuration = videoMaximumDuration;
+        }
+
         if ([[self.options objectForKey:@"useFrontCamera"] boolValue]) {
             picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         }

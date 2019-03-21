@@ -143,6 +143,7 @@ ImagePicker.clean().then(() => {
 | enableRotationGesture (android only)    |           bool (default false)           | Whether to enable rotating the image by hand gesture |
 | cropperChooseText (ios only)            |           string (default choose)        | Choose button text |
 | cropperCancelText (ios only)            |           string (default Cancel)        | Cancel button text |
+| videoMaximumDuration                    |           number (default none)          | Video maximum duration |
 
 #### Smart Album Types (ios)
 
